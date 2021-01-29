@@ -11,6 +11,7 @@ import Badge from '@material-ui/core/Badge';
 //Styles
 import {Wrapper, StyledButton} from "./App.styles";
 import Item from "./item/Item";
+import Cart from "./Cart/Cart";
 
 //Types
 export type CartItemType = {
@@ -37,7 +38,7 @@ const App = () => {
     console.log(data);
 
     const getTotalItems = (items: CartItemType[]) =>
-        items.reduce((ack:number, item)=> ack + item.amount, 0);
+        items.reduce((ack: number, item) => ack + item.amount, 0);
 
 
     const handleAddToCart = (clickedItem: CartItemType) => null;
@@ -45,23 +46,27 @@ const App = () => {
     const handleRemoveFromCart = () => null;
 
     // 状態による表示設定
-    if (isLoading) return <LinearProgress />;
+    if (isLoading) return <LinearProgress/>;
     if (error) return <div>Something went wrong ...</div>;
 
     return (
         <Wrapper>
             <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-                Cart goes here!
+                <Cart
+                    cartItems={cartItems}
+                    addToCart={handleAddToCart}
+                    removeFromCart={handleRemoveFromCart}
+                />
             </Drawer>
             <StyledButton onClick={() => setCartOpen(true)}>
                 <Badge badgeContent={getTotalItems(cartItems)} color='error'>
-                    <AddShoppingCartIcon />
+                    <AddShoppingCartIcon/>
                 </Badge>
             </StyledButton>
             <Grid container spacing={3}>
                 {data?.map(item => (
                     <Grid item key={item.id} xs={12} sm={4}>
-                        <Item item={item} handleAddToCart={handleAddToCart} />
+                        <Item item={item} handleAddToCart={handleAddToCart}/>
                     </Grid>
                 ))}
             </Grid>
