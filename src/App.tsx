@@ -10,6 +10,7 @@ import Badge from '@material-ui/core/Badge';
 
 //Styles
 import {Wrapper, StyledButton} from "./App.styles";
+
 import Item from "./item/Item";
 import Cart from "./Cart/Cart";
 
