@@ -15,6 +15,7 @@ import Item from "./item/Item";
 import Cart from "./Cart/Cart";
 
 //Types
+//Itemの型を定義
 export type CartItemType = {
     id: number;
     category: string;
@@ -32,16 +33,26 @@ const App = () => {
     const [cartOpen, setCartOpen] = useState(false);
     const [cartItems, setCartItems] = useState([] as CartItemType[])
     // 非同期処理対応
+    // React Hooksを利用,
     const {data, isLoading, error} = useQuery<CartItemType[]>(
-        'products',
-        getProducts
+        'products', //クエリを特定するkeyを定義
+        getProducts //実際に呼び出すfunction
     );
-    console.log(data);
 
+    /**
+     * 商品の合計個数を返却
+     *
+     * @param items
+     */
     const getTotalItems = (items: CartItemType[]) =>
         items.reduce((ack: number, item) => ack + item.amount, 0);
 
 
+    /**
+     * 商品をカートに入れる
+     *
+     * @param clickedItem
+     */
     const handleAddToCart = (clickedItem: CartItemType) => {
         setCartItems(prev => {
             // 選択されたItemがすでにカートに入っているか否か確認
@@ -59,6 +70,11 @@ const App = () => {
         })
     };
 
+    /**
+     * 商品をカートから削除
+     *
+     * @param id
+     */
     const handleRemoveFromCart = (id: number) => {
         setCartItems(prev =>
             prev.reduce((ack, item) => {
@@ -86,7 +102,7 @@ const App = () => {
                 />
             </Drawer>
             <StyledButton onClick={() => setCartOpen(true)}>
-                <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+                <Badge badgeContent={getTotalItems(cartItems)} color='primary'>
                     <AddShoppingCartIcon/>
                 </Badge>
             </StyledButton>

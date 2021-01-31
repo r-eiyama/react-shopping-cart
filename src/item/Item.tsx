@@ -5,6 +5,7 @@ import { CartItemType } from "../App";
 
 //Styles
 import { Wrapper } from "./Item.style";
+import React from "react";
 
 // コンポーネントの引数をバリデーションしている
 type Props = {
@@ -17,6 +18,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
         <img src={item.image} alt={item.title} />
         <div>
             <h3>{item.title}</h3>
+            <p>{item.category}</p>
             <p>{item.description}</p>
             <h3>{item.price}</h3>
         </div>

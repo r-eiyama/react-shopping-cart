@@ -1,13 +1,15 @@
 import Button from "@material-ui/core/Button";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 // Types
-import { CartItemType} from "../App";
+import {CartItemType} from "../App";
 
 // Styles
-import { Wrapper } from "./CartItem.style";
+import {Wrapper} from "./CartItem.style";
 import React from "react";
 
-const CartItem: React.FC<Props> = ({ item, addToCart, removeFromCart}) => (
+const CartItem: React.FC<Props> = ({item, addToCart, removeFromCart}) => (
     <Wrapper>
         <div>
             <h3>{item.title}</h3>
@@ -21,8 +23,9 @@ const CartItem: React.FC<Props> = ({ item, addToCart, removeFromCart}) => (
                     disableElevation
                     variant='contained'
                     onClick={() => removeFromCart(item.id)}
+                    startIcon={<RemoveIcon/>}
                 >
-                    -
+                    Remove
                 </Button>
                 <p>{item.amount}</p>
                 <Button
@@ -30,18 +33,19 @@ const CartItem: React.FC<Props> = ({ item, addToCart, removeFromCart}) => (
                     disableElevation
                     variant='contained'
                     onClick={() => addToCart(item)}
+                    startIcon={<AddIcon/>}
                 >
-                    +
+                    Add
                 </Button>
             </div>
         </div>
-        <img src={item.image} alt={item.title} />
+        <img src={item.image} alt={item.title}/>
     </Wrapper>
 )
 
 type Props = {
     item: CartItemType;
-    addToCart: (clicledItem: CartItemType) => void;
+    addToCart: (clickedItem: CartItemType) => void;
     removeFromCart: (id: number) => void;
 }
 

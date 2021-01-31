@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     width: 100%;
     border: 1px solid lightblue;
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     
     img {
         max-height: 250px;
-        object-fit: cover;
+        object-fit: cover; //コンテナーにどのようにはめ込むかを設定
         border-radius: 20px 20px 0 0;
     }
     

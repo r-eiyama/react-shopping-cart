@@ -14,6 +14,10 @@ type Props = {
 };
 
 const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
+    /**
+     * カートの合計値を返却
+     * @param items
+     */
     const calculateTotal = (items: CartItemType[]) =>
         items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
 
